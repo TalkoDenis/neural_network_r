@@ -12,11 +12,17 @@ DenseLayer <- R6Class("DenseLayer",
     },
 
     forward = function(input_data) {
-      
+      self$inputs <- input_data
+      output_variable <- self$inputs %*% self$weights + self$bias      
     },
 
     backward = function(output_gradient, learning_rate) {
-      
+      dW <- t(self$inputs) %*% output_gradient
+      dX <- output_gradient %*% t(self$weights)
+      dB <- matrix(colSum(output_gradient, nrow=1))
+      self$weights <- self$weihts - (learning_rate * dW)
+      self$biases <- self$biases - (learning_rate * dB)
+      return(dB)
     }
   )
 )
