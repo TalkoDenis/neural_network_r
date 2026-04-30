@@ -5,13 +5,13 @@ Network <- R6Class("Network",
     layers = list(),
 
     add = function(layer) {
-      stopifnot("Added object must be a layer" = inherits(layer, "BaseLayer"))
+      stopifnot("added object must be a layer" = inherits(layer, "BaseLayer"))
       
       self$layers <- append(self$layers, layer)
     },
 
     forward = function(input_data) {
-      stopifnot("Input must be a matrix" = is.matrix(input_data))
+      stopifnot("input must be a matrix" = is.matrix(input_data))
     
       output <- input_data
       for (layer in self$layers) {
@@ -21,7 +21,7 @@ Network <- R6Class("Network",
     },
 
     backward = function(loss_gradient, learning_rate) {
-      stopifnot("Gradient must be a matrix" = is.matrix(loss_gradient))
+      stopifnot("gradient must be a matrix" = is.matrix(loss_gradient))
 
       grad <- loss_gradient
       for (i in length(self$layers):1) {

@@ -33,7 +33,8 @@ for (epoch in 1:epochs) {
   if (epoch %% 100 == 0) {
     cat(sprintf("Epoch: %d | Loss %f\n", epoch, loss))
   }
+}
 
 cat("Training complete. Final Predictions:")
 print(net$forward(X))
-}
+
