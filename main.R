@@ -3,6 +3,7 @@ source("src/nn/dense_layer.R")
 source("src/nn/relu.R")
 source("src/nn/mse.R")
 source("src/nn/network.R")
+source("src/visualization.R")
 
 X <- matrix(c(0,0,
               0,1,
@@ -22,11 +23,13 @@ net$add(DenseLayer$new(input_size=4, output_size=1))
 loss_fn <- MSELoss$new()
 learning_rate <- 0.1
 epochs <- 1000
+loss_history <- numeric(epochs)
 
 cat("Starting training...\n")
 for (epoch in 1:epochs) {
   predictions <- net$forward(X)
   loss <- loss_fn$forward(predictions, Y)
+  loss_history[epoch] <- loss
   grad <- loss_fn$backward(predictions, Y)
   net$backward(grad, learning_rate)
 
@@ -38,3 +41,4 @@ for (epoch in 1:epochs) {
 cat("Training complete. Final Predictions:")
 print(net$forward(X))
 
+plot_loss(loss_history)
