@@ -1,4 +1,4 @@
-sourse("src/nn/base_layer.R")
+source("src/nn/base_layer.R")
 
 ActivationReLU <- R6Class("ActivationReLU",
   inherit = BaseLayer,
@@ -11,7 +11,7 @@ ActivationReLU <- R6Class("ActivationReLU",
       self$inputs <- input_data
       output_data <- input_data
       output_data[output_data < 0] <- 0
-      retutn(output_data)
+      return(output_data)
     },
 
     backward = function(output_gradients, learning_rate=NULL) {

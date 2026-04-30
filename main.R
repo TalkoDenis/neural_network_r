@@ -6,15 +6,15 @@ source("src/nn/network.R")
 
 X <- matrix(c(0,0,
               0,1,
-              1,0.
-              1,1), nclo=2, byrow=TRUE0)
+              1,0,
+              1,1), ncol=2, byrow=TRUE)
 
 Y <- matrix(c(0,
               1,
               1,
               0), ncol=1)
 
-net <- network$new()
+net <- Network$new()
 net$add(DenseLayer$new(input_size=2, output_size=4))
 net$add(ActivationReLU$new())
 net$add(DenseLayer$new(input_size=4, output_size=1))
@@ -25,7 +25,7 @@ epochs <- 1000
 
 cat("Starting training...\n")
 for (epoch in 1:epochs) {
-  prediction <- net$forward(X)
+  predictions <- net$forward(X)
   loss <- loss_fn$forward(predictions, Y)
   grad <- loss_fn$backward(predictions, Y)
   net$backward(grad, learning_rate)

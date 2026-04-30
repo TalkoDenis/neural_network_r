@@ -11,7 +11,7 @@ Network <- R6Class("Network",
     },
 
     forward = function(input_data) {
-      stopifnit("Input must be a matrix" = is.matrix(input_data))
+      stopifnot("Input must be a matrix" = is.matrix(input_data))
     
       output <- input_data
       for (layer in self$layers) {
@@ -21,7 +21,7 @@ Network <- R6Class("Network",
     },
 
     backward = function(loss_gradient, learning_rate) {
-      stopifnit("Gradient must be a matrix" = is.matrix(loss_gradient))
+      stopifnot("Gradient must be a matrix" = is.matrix(loss_gradient))
 
       grad <- loss_gradient
       for (i in length(self$layers):1) {
