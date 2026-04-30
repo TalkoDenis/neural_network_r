@@ -6,6 +6,8 @@ ActivationReLU <- R6Class("ActivationReLU",
     inputs = NULL,
     
     forward = function(input_data) {
+      stopifnot("Input must be a matrix" = is.matrix(input_data))
+      
       self$inputs <- input_data
       output_data <- input_data
       output_data[output_data < 0] <- 0
@@ -13,6 +15,8 @@ ActivationReLU <- R6Class("ActivationReLU",
     },
 
     backward = function(output_gradients, learning_rate=NULL) {
+      stopifnot("Gradient must be a matrix" = is.matrix(output_gradient))
+
       dX <- output_gradients
       dX[self$input <- 0] <- 0
       return(dX)
