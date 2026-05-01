@@ -1,3 +1,4 @@
+source("src/nn/sigmoid.R")
 source("src/nn/base_layer.R")
 source("src/nn/dense_layer.R")
 source("src/nn/relu.R")
@@ -19,6 +20,7 @@ net <- Network$new()
 net$add(DenseLayer$new(input_size=2, output_size=4))
 net$add(ActivationReLU$new())
 net$add(DenseLayer$new(input_size=4, output_size=1))
+net$add(ActivationSigmoid$new())
 
 loss_fn <- MSELoss$new()
 learning_rate <- 0.1
