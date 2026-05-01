@@ -1,4 +1,4 @@
-train_network <- function(net, X, Y, epochs=1000, learning_rate=0.1) {
+train_network <- function(net, X, Y, epochs = 1000, learning_rate = 0.1) {
   loss_fn <- MSELoss$new()
   loss_history <- numeric(epochs)
 

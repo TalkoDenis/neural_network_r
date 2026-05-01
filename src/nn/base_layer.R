@@ -2,10 +2,10 @@ library(R6)
 
 BaseLayer <- R6Class("BaseLayer",
   public = list(
-    forward = function(){
+    forward = function() {
       stop("This method is abstract!")
     },
-    backward = function(){
+    backward = function() {
       stop("This method is abstract!")
     }
   )
