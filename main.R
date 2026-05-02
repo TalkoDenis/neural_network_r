@@ -18,4 +18,4 @@ net$add(ActivationSigmoid$new())
 
 history <- train_network(net, dataset$X, dataset$Y, epochs=1000, learning_rate=0.1)
 
-plot_loss(loss_history)
+plot_loss(history)
