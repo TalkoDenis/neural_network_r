@@ -1,4 +1,4 @@
-.PHONY train test lint format
+.PHONY: train test lint format
 
 train:
 	Rscript main.R
