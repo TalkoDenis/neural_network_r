@@ -1,35 +1,34 @@
-ibrary(optparse)
+library(optparse)
+
+source("src/nn/base_layer.R")
+source("src/nn/dense_layer.R")
+source("src/nn/relu.R")
+source("src/nn/sigmoid.R")
+source("src/nn/mse.R")
+source("src/nn/network.R")
+source("src/visualization.R")
+source("src/data.R")
+source("src/train_loop.R")
+source("src/pipeline.R")
 
 option_list <- list(
-  make_option(c("-f", "--file"), type="character", default=NULL, 
-              help="Path to the dataset (.csv)"),
-              
-  make_option(c("-t", "--target"), type="character", default=NULL, 
-              help="Name of the target column to predict"),
-              
-  make_option(c("-s", "--split"), type="numeric", default=0.7, 
-              help="Train/Test split ratio [default: 0.7]"),
-              
-  make_option(c("-p", "--plot"), action="store_true", default=FALSE, 
-              help="Generate and save a loss plot")
+  make_option(c("-f", "--file"), type="character", default=NULL, help="Path to the dataset (.csv)"),
+  make_option(c("-t", "--target"), type="character", default=NULL, help="Target column name"),
+  make_option(c("-s", "--split"), type="numeric", default=0.7, help="Train/Test split ratio"),
+  make_option(c("-p", "--plot"), action="store_true", default=FALSE, help="Generate a loss plot")
 )
 
-opt_parser <- OptionParser(option_list = option_list)
-opt <- parse_args(opt_parser)
+opt <- parse_args(OptionParser(option_list = option_list))
 
 if (is.null(opt$file)) {
-  cat("No file provided via CLI. Running in RStudio development mode...\n")
+  cat("Running in development mode...\n")
   opt$file <- "data/dummy_data.csv"
-  opt$target <- "target_column"
+  opt$target <- "target"
   opt$split <- 0.7
   opt$plot <- TRUE
 }
 
-cat("--- Neural Network Configuration ---\n")
-cat(sprintf("File: %s\n", opt$file))
-cat(sprintf("Target: %s\n", opt$target))
-cat(sprintf("Split Ratio: %f\n", opt$split))
-cat(sprintf("Plotting: %s\n", as.character(opt$plot)))
-cat("------------------------------------\n")
-
-# TODO: Load data, build network, and train!
+run_pipeline(file_path = opt$file, 
+             target_column = opt$target, 
+             split_ratio = opt$split, 
+             should_plot = opt$plot)
