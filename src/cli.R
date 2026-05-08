@@ -10,6 +10,7 @@ source("src/visualization.R")
 source("src/data.R")
 source("src/train_loop.R")
 source("src/pipeline.R")
+source("stc/nn/bce.R")
 
 option_list <- list(
   make_option(c("-f", "--file"), type="character", default=NULL, help="Path to the dataset (.csv)"),

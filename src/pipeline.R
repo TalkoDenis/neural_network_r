@@ -13,7 +13,8 @@ run_pipeline <- function(file_path, target_column, split_ratio, should_plot) {
   
   cat("\n--- Evaluation on Hidden Test Data ---\n")
   test_predictions <- net$forward(dataset$X_test)
-  loss_fn <- MSELoss$new()
+  # loss_fn <- MSELoss$new()
+  loss_fn <- SCELoss$new()
   test_loss <- loss_fn$forward(test_predictions, dataset$Y_test)
   
   cat(sprintf("Final Test Loss: %f\n", test_loss))
