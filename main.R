@@ -7,15 +7,15 @@ source("src/nn/network.R")
 source("src/visualization.R")
 source("src/data.R")
 source("src/train_loop.R")
+source("src/pipeline.R")
+source("src/cli.R")
 
-dataset <- get_xor_data()
+config <- parse_cli_args()
 
-net <- Network$new()
-net$add(DenseLayer$new(input_size=2, output_size=4))
-net$add(ActivationReLU$new())
-net$add(DenseLayer$new(input_size=4, output_size=1))
-net$add(ActivationSigmoid$new())
-
-history <- train_network(net, dataset$X, dataset$Y, epochs=1000, learning_rate=0.1)
-
-plot_loss(history)
+run_pipeline(
+  file_path = config$file,
+  target_column = config$target.
+  split_ratio = config$split,
+  should_plot = config$plot,
+  loss_type = config$loss
+)

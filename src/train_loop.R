@@ -1,6 +1,14 @@
 train_network <- function(net, X, Y, epochs = 1000, learning_rate = 0.1) {
-  # loss_fn <- MSELoss$new()
-  loss_fn <- BELoss$new()
+  
+  if (tolower(loss_type) == "mse") {
+   loss_fn <- MSELoss$new() 
+  } else if (tolower(loss_type) == "bce") {
+   loss_fn <- BCELoss$new() 
+  } else {
+    stop("Error! loss_type must be MSE or BCE")
+  }
+  
+  
   loss_history <- numeric(epochs)
 
   cat("Starting training...\n")
